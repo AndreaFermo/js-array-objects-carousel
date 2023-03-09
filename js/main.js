@@ -105,6 +105,39 @@ prevButton.addEventListener('click',
     }
 ); 
 
+const clickOnImg = document.getElementsByClassName('cliccable');
+console.log(clickOnImg)
+
+for (let i = 0; i < imagesArray.length; i++) {
+    clickOnImg[i].addEventListener('click',
+    function(){
+        wrapperDom[currentImage].classList.remove('block');
+        wrapperSmallDom[currentImage].classList.remove('closeUp');
+       
+        wrapperDom[i].classList.add('block');
+        wrapperSmallDom[i].classList.add('closeUp');
+        currentImage=i;
+    }
+    )
+}
+
+setInterval (goNext, 3000)
+
+function goNext() {
+    if (currentImage < wrapperDom.length - 1) {
+        wrapperDom[currentImage].classList.remove('block');
+        wrapperSmallDom[currentImage].classList.remove('closeUp');
+        currentImage++;
+        wrapperDom[currentImage].classList.add('block');
+        wrapperSmallDom[currentImage].classList.add('closeUp');
+    } else {
+        wrapperDom[0].classList.add('block');
+        wrapperSmallDom[0].classList.add('closeUp');
+        wrapperDom[wrapperDom.length - 1].classList.remove('block');
+        wrapperSmallDom[wrapperDom.length - 1].classList.remove('closeUp');
+        currentImage = 0;
+    }
+}
 
 
 
