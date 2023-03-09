@@ -25,6 +25,7 @@ const imagesArray = [
 const imageListDom = document.querySelector('.imageList');
 
 let sliderDom ='';
+let inBoxDom ='';
 
 for (let i = 0; i < imagesArray.length; i++) {
     const currentObject = imagesArray[i]
@@ -38,23 +39,17 @@ for (let i = 0; i < imagesArray.length; i++) {
                         </div>`;
 
     sliderDom += myImgWrapper;
+
+    const myImgWrapperSmall = `<div class="wrapperSmall">
+                                    <img class="img cliccable" src="${currentObject['image']}" alt="">
+                                </div>`;
+
+    inBoxDom += myImgWrapperSmall;
 }
 
 imageListDom.innerHTML = sliderDom;
 
 const boxNavDom = document.querySelector('.boxNav');
-
-let inBoxDom ='';
-
-for (let i = 0; i < imagesArray.length; i++) {
-    const currentObject = imagesArray[i]
-
-    const myImgWrapperSmall = `<div class="wrapperSmall">
-                                    <img class="img" src="${currentObject['image']}" alt="">
-                                </div>`;
-
-    inBoxDom += myImgWrapperSmall;
-}
 
 boxNavDom.innerHTML = inBoxDom;
 
@@ -109,6 +104,8 @@ prevButton.addEventListener('click',
         }
     }
 ); 
+
+
 
 
 
