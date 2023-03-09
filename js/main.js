@@ -121,7 +121,10 @@ for (let i = 0; i < imagesArray.length; i++) {
     )
 }
 
-setInterval (goNext, 3000)
+let idAutoplay = setInterval(goNext, 3000)
+
+let forward = true;
+
 
 function goNext() {
     if (currentImage < wrapperDom.length - 1) {
@@ -138,6 +141,62 @@ function goNext() {
         currentImage = 0;
     }
 }
+
+
+const playButtonDom = document.getElementById('play');
+const stopButtonDom = document.getElementById('alt');
+const invertButtonDom = document.getElementById('invert');
+
+
+
+stopButtonDom.addEventListener('click',
+    function() {
+        clearInterval(idAutoplay)
+        idAutoplay = null;
+    }
+)
+
+
+playButtonDom.addEventListener('click',
+    function() {
+        if (!idAutoplay) {
+            idAutoplay = setInterval(goNext, 3000)
+        }
+
+    }
+)
+
+invertButtonDom.addEventListener('click',
+function() {
+    if (forward == true) {
+        clearInterval(idAutoplay)
+        idAutoplay = setInterval(goBack, 3000)
+        forward = false;
+    } else {
+        clearInterval(idAutoplay)
+        
+        idAutoplay = setInterval(goNext, 3000)
+        forward = true;
+    }
+
+}
+)
+
+function goBack() {
+        if (currentImage > 0) {
+            wrapperDom[currentImage].classList.remove('block');
+            wrapperSmallDom[currentImage].classList.remove('closeUp');
+            currentImage--;
+            wrapperDom[currentImage].classList.add('block');
+            wrapperSmallDom[currentImage].classList.add('closeUp');
+        } else {
+            wrapperDom[wrapperDom.length - 1].classList.add('block');
+            wrapperDom[currentImage].classList.remove('block');
+            wrapperSmallDom[wrapperDom.length - 1].classList.add('closeUp');
+            wrapperSmallDom[currentImage].classList.remove('closeUp');
+            currentImage = wrapperDom.length - 1;
+        }
+    }
 
 
 
