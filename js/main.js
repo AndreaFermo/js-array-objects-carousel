@@ -93,23 +93,6 @@ let idAutoplay = setInterval(goNext, 3000)
 let forward = true;
 
 
-function goNext() {
-    if (currentImage < wrapperDom.length - 1) {
-        wrapperDom[currentImage].classList.remove('block');
-        wrapperSmallDom[currentImage].classList.remove('closeUp');
-        currentImage++;
-        wrapperDom[currentImage].classList.add('block');
-        wrapperSmallDom[currentImage].classList.add('closeUp');
-    } else {
-        wrapperDom[0].classList.add('block');
-        wrapperSmallDom[0].classList.add('closeUp');
-        wrapperDom[wrapperDom.length - 1].classList.remove('block');
-        wrapperSmallDom[wrapperDom.length - 1].classList.remove('closeUp');
-        currentImage = 0;
-    }
-}
-
-
 const playButtonDom = document.getElementById('play');
 const stopButtonDom = document.getElementById('alt');
 const invertButtonDom = document.getElementById('invert');
@@ -149,6 +132,22 @@ function() {
 }
 )
 
+function goNext() {
+    if (currentImage < wrapperDom.length - 1) {
+        wrapperDom[currentImage].classList.remove('block');
+        wrapperSmallDom[currentImage].classList.remove('closeUp');
+        currentImage++;
+        wrapperDom[currentImage].classList.add('block');
+        wrapperSmallDom[currentImage].classList.add('closeUp');
+    } else {
+        wrapperDom[0].classList.add('block');
+        wrapperSmallDom[0].classList.add('closeUp');
+        wrapperDom[wrapperDom.length - 1].classList.remove('block');
+        wrapperSmallDom[wrapperDom.length - 1].classList.remove('closeUp');
+        currentImage = 0;
+    }
+}
+
 function goBack() {
         if (currentImage > 0) {
             wrapperDom[currentImage].classList.remove('block');
@@ -163,7 +162,7 @@ function goBack() {
             wrapperSmallDom[currentImage].classList.remove('closeUp');
             currentImage = wrapperDom.length - 1;
         }
-    }
+}
 
 
 
